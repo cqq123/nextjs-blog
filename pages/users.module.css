@@ -1,0 +1,21 @@
+.input {
+  border: none;
+}
+.operate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rowClass {
+  border-bottom: 1px solid red;
+}
+.remark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  cursor: pointer;
+  margin-left: 5px;
+}
