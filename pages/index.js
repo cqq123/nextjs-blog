@@ -170,7 +170,7 @@ export default function Users({ list }) {
   //   </Layout>
   // )
   return (
-    <Layout>
+    <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
