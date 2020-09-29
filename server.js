@@ -1,8 +1,10 @@
+const crypto = require('crypto');
 const express = require('express');
 const next = require('next');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const _ = require('lodash');
+const { handleCipher, handleDecipher } = require('./lib/crypto');
 
 const adapters = new FileSync('db.json');
 const lowdb = low(adapters);
@@ -10,7 +12,8 @@ lowdb.defaults({
   users: [],
   count: 0,
 });
-
+// const pwd = handleCipher(' this is password');
+// const mingwen = handleDecipher(pwd);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 
@@ -21,7 +24,10 @@ app.prepare().then(() => {
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
   server.get('/list', (req, res) => {
-    const result = lowdb.get('users').value();
+    const result = lowdb.get('users').value().map((a) => ({
+      ...a,
+      password: handleDecipher(a.password),
+    }));
     res.json({
       success: true,
       data: result || [],
@@ -33,6 +39,7 @@ app.prepare().then(() => {
     lowdb.set('users', req.body.users.map((a) => ({
       ...a,
       id: _.uniqueId(),
+      password: handleCipher(a.password),
     })))
       .write();
     lowdb.set('count', req.body.users.length)
@@ -50,7 +57,10 @@ app.prepare().then(() => {
     lowdb.set('count', list.length).write();
     res.json({
       success: true,
-      data: list,
+      data: list.map((a) => ({
+        ...a,
+        password: handleDecipher(a.password),
+      })),
     })
   })
 

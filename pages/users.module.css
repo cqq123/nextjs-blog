@@ -1,21 +1,83 @@
-.input {
-  border: none;
-}
+
 .operate {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 1rem;
 }
 
-.rowClass {
-  border-bottom: 1px solid red;
+
+.table {
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  padding: 1px;
 }
-.remark {
+.row {
+  height: 2rem;
+  line-height: 2rem;
+  border-bottom: 1px solid #aaaaaa;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
-.icon {
+.row:last-child {
+  border-bottom: none;
+}
+/* .row:last-child {
+  border-bottom: none;
+}
+.row:nth-last-of-type(1) div:nth-last-of-type(1) {
+  border-radius: 4px;
+}
+.row:nth-last-of-type(1) div:first-child {
+  border-radius: 4px;
+} */
+.row > div {
+  border-right: 1px solid #aaaaaa;
+  flex: 1;
+  text-align: center;
+  font-size: 0.875rem;
+}
+.row div:nth-last-of-type(1) {
+  border-right: none;
+}
+.row div input {
+  border: none;
+
+  width: 100%;
+  height: 100%;
+  padding: 0 1rem;
+  outline: none;
+}
+.row div input:focus {
+  border: 2px solid rgb(0, 112, 243);;
+}
+.operate div {
+  background-color: rgb(0, 112, 243);
+  border-radius: 4px;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 0.75rem;
+  color: #fff;
+  width: 5em;
+  text-align: center;
   cursor: pointer;
-  margin-left: 5px;
+}
+.remarkContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.remarkContainer input {
+  flex: 1;
+  width: 0;
+}
+.deleteBtn {
+  /* border-radius: 4px; */
+  box-sizing: border-box;
+  font-size: 0.75rem;
+  width: 3rem;
+  text-align: center;
+  /* color: #fff; */
+  cursor: pointer;
+  /* border: 1px solid rgb(0, 112, 243); */
+  /* line-height: 1.5rem; */
+
 }
