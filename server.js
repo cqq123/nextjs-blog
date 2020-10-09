@@ -12,8 +12,6 @@ lowdb.defaults({
   users: [],
   count: 0,
 });
-// const pwd = handleCipher(' this is password');
-// const mingwen = handleDecipher(pwd);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 

@@ -1,49 +1,3 @@
-// import Head from 'next/head'
-// import Link from 'next/link'
-// import Layout, { siteTitle } from '../components/layout'
-// import utilStyles from '../styles/utils.module.css'
-// import { getSortedPostsData } from '../lib/posts';
-
-// export default function Home({ allPostsData }) {
-//   return (
-//     <Layout home>
-//       <Head>
-//         <title>{siteTitle}</title>
-//       </Head>
-//       <section className={utilStyles.headingMd}>
-//         <Link href="/users">
-//           <a>users list</a>
-//         </Link>
-//       </section>
-//       {/* <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-//         <h2 className={utilStyles.headingLg}>Blog</h2>
-//         <ul className={utilStyles.list}>
-//           {allPostsData.map(({ id, date, title }) => (
-//             <li className={utilStyles.listItem} key={id}>
-//               <Link href="/posts/[id]" as={`/posts/${id}`}>
-//                 <a>{title}</a>
-//               </Link>
-//               <br />
-//               <small className={utilStyles.lightText}>
-//                 {date}
-//               </small>
-//             </li>
-//           ))}
-//         </ul>
-//       </section> */}
-//     </Layout>
-//   )
-// }
-
-// export const getStaticProps = async () => {
-//   const allPostsData = getSortedPostsData();
-//   return {
-//     props: {
-//       allPostsData,
-//     }
-//   }
-// }
-
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import { useState } from 'react';
@@ -91,84 +45,6 @@ export default function Users({ list }) {
     }
   };
 
-  // const columns = [
-  //   {
-  //     title: '用户名',
-  //     dataIndex: 'name',
-  //     key: 'name',
-  //     render: (text, record, index) => {
-  //       return (
-  //         <Input
-  //           value={text}
-  //           // className={styles.input}
-  //           onChange={(e) => setData(data.map((a, i) => index === i ? { ...a, name: e.target.value } : a))}
-  //         />
-  //       )
-  //     }
-  //   },
-  //   {
-  //     title: '密码',
-  //     dataIndex: 'password',
-  //     key: 'password',
-  //     render: (text, record, index) => {
-  //       return (
-  //         <Input
-  //           // className={styles.input}
-  //           value={text}
-  //           onChange={(e) => setData(data.map((a, i) => index === i ? { ...a, password: e.target.value } : a))}
-  //         />
-  //       )
-  //     }
-  //   },
-  //   {
-  //     title: '备注',
-  //     dataIndex: 'remark',
-  //     key: 'remark',
-  //     render: (text, record, index) => {
-  //       return (
-  //         <div
-  //           className={styles.remark}
-  //         >
-  //           <Input
-  //             // className={styles.input}
-  //             value={text}
-  //             onChange={(e) => setData(data.map((a, i) => index === i ? { ...a, remark: e.target.value } : a))}
-  //           />
-  //           <CloseOutlined
-  //             className={styles.icon}
-  //             onClick={() => handleDelete(record.id, index)}
-  //           />
-  //         </div>
-  //       )
-  //     }
-  //   }
-  // ];
-  // return (
-  //   <Layout>
-  //     <Head>
-  //       <title>{siteTitle}</title>
-  //     </Head>
-  //     <section className={utilStyles.headingMd}>
-  //       <Table
-  //         columns={columns}
-  //         dataSource={data}
-  //         className={styles.table}
-  //         scroll={{ y: 500 }}
-  //       />
-  //       <div
-  //         className={styles.operate}
-  //       >
-  //         <Button
-  //           onClick={handleAdd}
-  //         >添加</Button>
-  //         <Button
-  //           onClick={handleSave}
-  //         >保存</Button>
-  //       </div>
-
-  //     </section>
-  //   </Layout>
-  // )
   return (
     <Layout home>
       <Head>
@@ -195,20 +71,6 @@ export default function Users({ list }) {
                     value={item.password}
                     handleChange={(e) => setData(data.map((a, i) => index === i ? { ...a, password: e.target.value } : a))}
                   />
-                  {/* <div
-                    className={styles.remarkContainer}
-                  >
-                    <input
-                      value={item.password}
-                      type="password"
-                      onChange={(e) => setData(data.map((a, i) => index === i ? { ...a, password: e.target.value } : a))}
-                    />
-                    <div
-                      className={styles.deleteBtn}
-                    >
-                      显示
-                    </div>
-                  </div> */}
                   <div
                     className={styles.remarkContainer}
                   >
