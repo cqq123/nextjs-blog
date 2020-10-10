@@ -3,9 +3,10 @@ import Layout, { siteTitle } from '../components/layout'
 import { useState } from 'react';
 import styles from './users.module.css';
 import Password from '../components/password';
+const { handleDecipher } = require('../lib/crypto');
 
-export default function Users({ list }) {
-  const [data, setData] = useState(list);
+export default function Users(obj) {
+  const [data, setData] = useState(obj.list);
 
   const handleAdd = () => {
     setData([
@@ -18,7 +19,7 @@ export default function Users({ list }) {
     ])
   }
   const handleSave = () => {
-    fetch('http://127.0.0.1:3000/save', {
+    fetch('/save', {
       method: 'POST',
       body: JSON.stringify({
         users: data,
@@ -36,7 +37,7 @@ export default function Users({ list }) {
 
   const handleDelete = (id, index) => {
     if (id) {
-      fetch(`http://127.0.0.1:3000/delete/${id}`, {
+      fetch(`/delete/${id}`, {
         method: 'POST',
       }).then((res) => res.json())
         .then((res) => setData(res.data));
@@ -105,13 +106,15 @@ export default function Users({ list }) {
   )
 }
 
-export const getStaticProps = async () => {
-  const list = await fetch('http://127.0.0.1:3000/list')
-    .then(res => res.json())
-    .then(res => res.data);
-  return {
-    props: {
-      list,
-    }
-  }
+export const getServerSideProps = async ({ req }) => {
+  const result = req.db.get('users').value().map((a) => ({
+    ...a,
+    password: handleDecipher(a.password),
+  }));
+
+ return {
+   props: {
+     list: result || [],
+   },
+ }
 }
